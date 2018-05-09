@@ -1781,3 +1781,16 @@
 	$config['version'] = '+ <a href="https://github.com/ctrlcctrlv/infinity">infinity</a> + <a href="https://github.com/OpenIB/OpenIB/">OpenIB</a>';
 
 	$config['hashSalt'] = "salt";
+
+$config['chan_name'] = 'OpenIB';
+$config['site_name'] = &$config['chan_name'];
+$config['chan_desc'] = 'the example imageboard';
+$config['chan_domain'] = 'http://localhost/';
+$config['chan_domain_tor'] = 'http://currentlynotavai.onion/';
+$config['chan_claim_email'] = 'claim@localhost';
+$config['chan_admin_email'] = 'admin@localhost';
+$config['chan_abuse_email'] = 'abuse@localhost';
+$config['chan_twitter'] = 'openib';
+$config['chan_chat'] = 'https://riot.im/app/#/room/#openib:matrix.org';
+$config['chan_chat_desc'] = 'Matrix (Chat): #openib:matrix.org';
+$config['chan_main_boards'] = array("b" => "Random", "v" => "Video Games", "pol" => "Politics", "meta" => "Meta");

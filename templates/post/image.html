@@ -1,7 +1,7 @@
 <a href="
 	 {% if post.file|extension == 'webm' or post.file|extension == 'mp4' %}
 	 	{% if mod %}
-	 		https://8ch.net/player.php?v={{ uri_img }}{{ post.file }}&amp;t={{ post.filename|e('url') }}&amp;loop=1
+	 		{{ config.chan_domain }}player.php?v={{ uri_img }}{{ post.file }}&amp;t={{ post.filename|e('url') }}&amp;loop=1
 	 	{% else %}
 	 		{{ config.root }}player.php?v={{ uri_img }}{{ post.file }}&amp;t={{ post.filename|e('url') }}&amp;loop=1
 	 	{% endif %}

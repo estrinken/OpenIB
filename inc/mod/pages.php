@@ -892,8 +892,8 @@ function mod_page_ip_less($b, $id) {
 		error(_('Could not find that post.'));
 	}
 
-	if (filter_var($ip, FILTER_VALIDATE_IP) === false)
-		error("Invalid IP address.");
+	#if (filter_var($ip, FILTER_VALIDATE_IP) === false)
+	#	error("Invalid IP address.");
 	
 	if (isset($_POST['ban_id'], $_POST['unban'])) {
 		if (!hasPermission($config['mod']['unban']))
@@ -2628,7 +2628,7 @@ function mod_new_pm($username) {
 			$check->bindValue(':to', $mod['id']);
 			$check->execute() or error(db_error($check));
 			if (!$check->rowCount()) {
-				error(_('You may not PM a member of global staff who did not PM you within the last month. Try posting on /operate/ or emailing us instead: admin@8chan.co'));
+				error(_('You may not PM a member of global staff who did not PM you within the last month. Try posting on /operate/ or emailing us instead: ').$config['chan_admin_email']);
 			}
 		}
 	}

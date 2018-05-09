@@ -59,7 +59,7 @@ if ($requestMethod === "POST"){
 	
     echo Element("page.html", array("config" => $config, "body" => '', "title" => _("Success!"), "subtitle" => _("You may now go back and make your post.")));
   } else {
-    $errorText = _('You failed the CAPTCHA') . _('. <a href="https://8ch.net/dnsbls_bypass.php">Try again.</a> If it\'s not working, email admin@8ch.net for support.');
+    $errorText = _('You failed the CAPTCHA') . _('. <a href="/dnsbls_bypass.php">Try again.</a> If it\'s not working, email ') . $config['chan_admin_email'] . _(' for support.');
     outputError (403, $errorText);
   }
 }

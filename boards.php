@@ -114,7 +114,7 @@ $searchArray = array(
 $searchHTML = Element("8chan/boards-index.html", $searchArray);
 
 $pageHTML = Element("page.html", array(
-		"title" => "8chan, the infinitely expanding imageboard",
+		"title" => $config['chan_name'].', '.$config['chan_desc'],
 		"config" => $config,
 		"body"   => $searchHTML,
 	)
@@ -123,7 +123,7 @@ $pageHTML = Element("page.html", array(
 $searchHTML2 = Element("8chan/boards-search.html", $searchArray);
 
 $pageHTML2 = Element("page.html", array(
-		"title" => "Boards on 8chan",
+		"title" => "Boards on ".$config['chan_name'],
 		"config" => $config,
 		"body"   => $searchHTML2,
 	)

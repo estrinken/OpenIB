@@ -118,7 +118,7 @@
 				},
 				error: function(xhr, status, er) {
 					console.log(xhr);
-					alert(_('The server took too long to submit your post. Your post was probably still submitted. If it wasn\'t, 8chan might be experiencing issues right now -- please try your post again later. Error information: ') + "<div><textarea>" + JSON.stringify(xhr) + "</textarea></div>");
+					alert(_('The server took too long to submit your post. Your post was probably still submitted. If it wasn\'t, the server might be experiencing issues right now -- please try your post again later. Error information: ') + "<div><textarea>" + JSON.stringify(xhr) + "</textarea></div>");
 					$(form).find('input[type="submit"]').val(submit_txt);
 					$(form).find('input[type="submit"]').removeAttr('disabled');
 				},

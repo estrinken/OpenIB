@@ -49,7 +49,7 @@
 	$config['thumb_keep_animation_frames'] = 1;
 	$config['show_ratio'] = true;
 	//$config['allow_upload_by_url'] = true;
-	$config['max_filesize'] = 1024 * 1024 * 8; // 8MB
+	$config['max_filesize'] = 1024 * 1024 * 20; // 8MB
 	$config['spoiler_images'] = true;
 	$config['image_reject_repost'] = true;
 	$config['allowed_ext_files'][] = 'webm';
@@ -67,7 +67,7 @@
 	$config['mod']['capcode'][GLOBALVOLUNTEER] = array('Global Volunteer');
 	$config['mod']['capcode'][ADMIN] = array('Admin', 'Global Volunteer');
 	$config['custom_capcode']['Admin'] = array(
-		'<span class="capcode" title="This post was written by the global 8chan administrator."> <i class="fa fa-wheelchair" style="color:blue;"></i> <span style="color:red">8chan Administrator</span></span>',
+		'<span class="capcode" title="This post was written by the global '.$config['chan_name'].' administrator."> <i class="fa fa-smile" style="color:blue;"></i> <span style="color:red">'.$config['chan_name'].' Administrator</span></span>',
 	);
 	//$config['mod']['view_banlist'] = GLOBALVOLUNTEER;
 	$config['mod']['recent_reports'] = 65535;
@@ -173,12 +173,26 @@
 	$config['markup_paragraphs'] = true;
 	$config['markup_rtl'] = true;
 	
-	$config['boards'] = array(array('<i class="fa fa-home" title="Home"></i> home' => 'https://8ch.net', '<i class="fa fa-tags" title="Boards"></i> board list' => 'https://8ch.net/boards.html', '<i class="fa fa-question" title="FAQ"></i> faq' => 'https://8ch.net/faq.html', '<i class="fa fa-random" title="Random"></i> random' => 'https://8ch.net/random.php', '<i class="fa fa-plus" title="New board"></i> create' => 'https://8ch.net/create.php', '<i class="fa fa-ban" title="Public ban list"></i> bans' => 'https://8ch.net/bans.html', '<i class="fa fa-search" title="Search"></i> search' => 'https://8ch.net/search.php', '<i class="fa fa-cog" title="Manage board"></i> manage' => '/mod.php', '<i class="fa fa-quote-right" title="Chat"></i> irc' => 'https://qchat.rizon.net/?channels=#8chan'), array('<i class="fa fa-twitter" title="Twitter"></i>'=>'https://twitter.com/infinitechan', '<i class="fa fa-recycle" title="Claim a board"></i></i>'=>'https://8ch.net/claim.html', '<i class="fa fa-bug" title="File a bug report"></i></i>'=>'https://8ch.net/sudo/catalog.html', '<i class="fa fa-check-circle-o" aria-hidden="true" title="Presolve the captcha!"></i>'=>'https://8ch.net/dnsbls_bypass.php'));
-	//$config['boards'] = array(array('<i class="fa fa-home" title="Home"></i>' => '/', '<i class="fa fa-tags" title="Boards"></i>' => '/boards.html', '<i class="fa fa-question" title="FAQ"></i>' => '/faq.html', '<i class="fa fa-random" title="Random"></i>' => '/random.php', '<i class="fa fa-plus" title="New board"></i>' => '/create.php', '<i class="fa fa-search" title="Search"></i>' => '/search.php', '<i class="fa fa-cog" title="Manage board"></i>' => '/mod.php', '<i class="fa fa-quote-right" title="Chat"></i>' => 'https://qchat.rizon.net/?channels=#8chan'), array('b', 'meta', 'int'), array('v', 'a', 'tg', 'fit', 'pol', 'tech', 'mu', 'co', 'sp', 'boards'), array('<i class="fa fa-twitter" title="Twitter"></i>'=>'https://twitter.com/infinitechan', '<i class="fa fa-refresh" title="Claim a board"></i></i>'=>'https://8ch.net/claim.html', '<i class="fa fa-bug" title="File a bug report"></i></i>'=>'https://8ch.net/sudo/catalog.html'));
+	$config['boards'] = array(array('<i class="fa fa-home" title="Home"></i> home' => '/',
+'<i class="fa fa-tags" title="Boards"></i> board list' => '/boards.html',
+'<i class="fa fa-question" title="FAQ"></i> faq' => '/faq.html',
+'<i class="fa fa-random" title="Random"></i> random' => '/random.php',
+'<i class="fa fa-plus" title="New board"></i> create' => '/create.php',
+'<i class="fa fa-ban" title="Public ban list"></i> bans' => '/bans.html',
+'<i class="fa fa-search" title="Search"></i> search' => '/search.php',
+'<i class="fa fa-cog" title="Manage board"></i> manage' => '/mod.php',
+'<i class="fa fa-quote-right" title="Chat"></i> chat' => $config['chan_chat']),
+array(
+'<i class="fa fa-twitter" title="Twitter"></i>'=>'https://twitter.com/'.$config['chan_twitter'],
+'<i class="fa fa-recycle" title="Claim a board"></i></i>'=>'/claim.html',
+#'<i class="fa fa-bug" title="File a bug report"></i></i>'=>'https://8ch.net/sudo/catalog.html',
+'<i class="fa fa-check-circle-o" aria-hidden="true" title="Presolve the captcha!"></i>'=>'/dnsbls_bypass.php'
+)
+);
 	
-	$config['footer'][] = 'All posts on 8chan are the responsibility of the individual poster and not the administration of 8chan, pursuant to 47 U.S.C. &sect; 230.';
+	$config['footer'][] = 'All posts on '.$config['chan_name'].' are the responsibility of the individual poster and not the administration of '.$config['chan_name'].', pursuant to 47 U.S.C. &sect; 230.';
 	$config['footer'][] = 'We have not been served any secret court orders and are not under any gag orders.';
-	$config['footer'][] = 'To make a DMCA request or report illegal content, please email <a href="mailto:admin@8chan.co">admin@8chan.co</a>.';
+	$config['footer'][] = 'To make a DMCA request or report illegal content, please email <a href="mailto:'.$config['chan_abuse_email'].'">'.$config['chan_abuse_email'].'</a>.';
 	
 	$config['search']['enable'] = true;
 	
@@ -228,7 +242,7 @@ $config['early_404'] = false;
 $config['early_404_page'] = 5;
 $config['early_404_replies'] = 10;
 $config['cron_bans'] = true;
-$config['mask_db_error'] = true;
+$config['mask_db_error'] = false;
 $config['ban_appeals'] = true;
 $config['show_sages'] = false;
 $config['katex'] = false;
@@ -241,7 +255,7 @@ $config['no_top_bar_boards'] = false;
 $config['convert_args'] = '-size %dx%d %s -thumbnail %dx%d -quality 85%% -background \'#d6daf0\' -alpha remove -auto-orient +profile "*" %s';
 
 // Flavor and design.
-$config['site_name'] = "&infin;chan";
+//$config['site_name'] = $config['chan_name'];
 #$config['site_logo'] = "/static/logo_33.svg";
 
 // 8chan specific mod pages
