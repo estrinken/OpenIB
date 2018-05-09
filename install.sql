@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `antispam` (
 
 CREATE TABLE IF NOT EXISTS `bans` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `iphash` varchar(32) NOT NULL,
+  `iphash` varchar(60) CHARACTER SET ascii NOT NULL,
   `created` int(10) unsigned NOT NULL,
   `expires` int(10) unsigned DEFAULT NULL,
   `board` varchar(58) DEFAULT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `boards` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `board_create` (
-  `time` text NOT NULL,
+  `time` timestamp NOT NULL,
   `uri` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `cites` (
 
 CREATE TABLE IF NOT EXISTS `ip_notes` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `ip` varchar(39) CHARACTER SET ascii NOT NULL,
+  `ip` varchar(60) CHARACTER SET ascii NOT NULL,
   `mod` int(11) DEFAULT NULL,
   `time` int(11) NOT NULL,
   `body` text NOT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `ip_notes` (
 
 CREATE TABLE IF NOT EXISTS `modlogs` (
   `mod` int(11) NOT NULL,
-  `ip` varchar(39) CHARACTER SET ascii NOT NULL,
+  `ip` varchar(60) CHARACTER SET ascii NOT NULL,
   `board` varchar(58) CHARACTER SET utf8 DEFAULT NULL,
   `time` int(11) NOT NULL,
   `text` text NOT NULL,
@@ -158,7 +158,7 @@ INSERT INTO `mods` VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `mutes` (
-  `ip` varchar(39) NOT NULL,
+  `ip` varchar(60) CHARACTER SET ascii NOT NULL,
   `time` int(11) NOT NULL,
   KEY `ip` (`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=ascii;
@@ -221,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `pms` (
 CREATE TABLE IF NOT EXISTS `reports` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `time` int(11) NOT NULL,
-  `ip` varchar(39) CHARACTER SET ascii NOT NULL,
+  `ip` varchar(60) CHARACTER SET ascii NOT NULL,
   `board` varchar(58) CHARACTER SET utf8 DEFAULT NULL,
   `post` int(11) NOT NULL,
   `reason` text NOT NULL,
@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `robot` (
 --
 
 CREATE TABLE IF NOT EXISTS `search_queries` (
-  `ip` varchar(39) NOT NULL,
+  `ip` varchar(60) CHARACTER SET ascii NOT NULL,
   `time` int(11) NOT NULL,
   `query` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -274,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `theme_settings` (
 
 CREATE TABLE IF NOT EXISTS `flood` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `ip` varchar(39) NOT NULL,
+  `ip` varchar(60) CHARACTER SET ascii NOT NULL,
   `board` varchar(58) CHARACTER SET utf8 NOT NULL,
   `time` int(11) NOT NULL,
   `posthash` char(32) NOT NULL,
@@ -354,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `tor_cookies` (
 --
 
 CREATE TABLE IF NOT EXISTS `dnsbl_bypass` (
-  `ip` varchar(255) NOT NULL,
+  `ip` varchar(60) CHARACTER SET ascii NOT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`ip`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -407,7 +407,9 @@ CREATE TABLE IF NOT EXISTS `board_stats` (
 	PRIMARY KEY (`stat_uri`, `stat_hour`)
 )  ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+CREATE TABLE IF NOT EXISTS `torlist` (
+	`ip` VARCHAR(60) CHARACTER SET ascii NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
