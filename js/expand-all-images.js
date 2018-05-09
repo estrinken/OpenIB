@@ -28,7 +28,7 @@ onready(function(){
 					return;
 
 				// or WEBM
-              			if (/(?i)\.(webm|mp4)$/.test($(this).parent().attr('href')))
+              			if (/\.(webm|mp4)$/i.test($(this).parent().attr('href')))
             			        return;
 
 				if (!$(this).parent().data('expanded'))
