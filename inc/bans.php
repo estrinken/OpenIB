@@ -117,9 +117,8 @@ class Bans {
     $query = prepare("SELECT ``bans``.*, `username`, `type` FROM ``bans``
       LEFT JOIN ``mods`` ON ``mods``.`id` = `creator`
       LEFT JOIN ``boards`` ON ``boards``.`uri` = ``bans``.`board`
-       :queryaddition 
+       ".$query_addition."
        ORDER BY `created` DESC") ;
-    $query->bindValue(':queryaddition', $query_addition);
     $query->execute() or error(db_error($query));
     $bans = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -236,7 +235,7 @@ class Bans {
       error($config['error']['noaccess']);
     }
 
-    $query = prepare("INSERT INTO ``bans`` VALUES (NULL, :iphash, :time, :expires, :board, :mod, :reason, 0, :post, 0)");
+    $query = prepare("INSERT INTO ``bans`` VALUES (NULL, :iphash, :time, :expires, :board, :mod, :reason, 0, :post)"); // ,0?
 
     $query->bindValue(':iphash', $iphash);
 
